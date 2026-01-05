@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <title>Anonymous Feedback</title>
     <style>
         * {
@@ -199,7 +201,7 @@
                 publicKey = await openpgp.readKey({ armoredKey: data.publicKey });
                 showStatus('Public key loaded. Your message will be encrypted.', 'info');
             } catch (error) {
-                console.error('Error loading public key:', error);
+                // Don't log errors to console - could leak information
                 showStatus('Error loading encryption key. Please refresh the page.', 'error');
             }
         }
@@ -275,7 +277,7 @@
                     showStatus(data.error || 'Error sending feedback', 'error');
                 }
             } catch (error) {
-                console.error('Error:', error);
+                // Don't log errors to console - could leak information
                 showStatus('Error encrypting or sending feedback. Please try again.', 'error');
             } finally {
                 submitBtn.disabled = false;

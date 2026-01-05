@@ -3,4 +3,5 @@ feedback.txt
 public-key.asc
 .env
 *.log
+.temp-encrypted.txt
 
